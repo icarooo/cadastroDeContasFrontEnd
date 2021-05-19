@@ -1,0 +1,72 @@
+<form [formGroup]="registerForm">
+
+    <div class="form-group" >
+        <label for="banco">Banco</label>
+        
+        <select formControlName="codBanco" class="form-control" (change)="onOptionsSelected($event)">
+            <option disabled>Selecione o banco</option>
+            <option *ngFor="let bc of _bancos" value="{{bc.compensacao}}">
+                {{bc.compensacao}} - {{bc.banco}}
+            </option>
+        </select>
+        <input type="hidden" formControlName="nomeBanco">
+
+    </div>
+
+
+    <div class="form-group" >
+      <label for="numeroConta">Conta</label>
+      <input type="text" pattern="[0-9]*" class="form-control" formControlName="numeroConta"  placeholder="Numero da conta">
+      <div *ngIf="registerForm.get('numeroConta')?.hasError('required')
+      && registerForm.get('numeroConta')?.touched" style="color:red">
+          Este campo é obrigario.
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <label for="agencia">Agencia</label>
+        <input type="text" pattern="[0-9]*" class="form-control" formControlName="agencia"  placeholder="Numero da agencia">
+        <div *ngIf="registerForm.get('agencia')?.hasError('required')
+        && registerForm.get('agencia')?.touched" style="color:red">
+            Este campo é obrigario.
+          </div>
+        </div>
+
+        <div class="form-group" >
+            <label for="cpfCnpj">CPF/CNPJ</label>
+            <input type="text" pattern="[0-9]*" class="form-control" formControlName="cpfCnpj"  placeholder="CPF ou CNPJ">
+            <div *ngIf="registerForm.get('cpfCnpj')?.hasError('required')
+            && registerForm.get('cpfCnpj')?.touched" style="color:red">
+                Este campo é obrigario.
+              </div>
+            </div>
+
+            <div class="form-group" >
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" formControlName="nome"  placeholder="Nome do titular">
+                <div *ngIf="registerForm.get('nome')?.hasError('required')
+                && registerForm.get('nome')?.touched" style="color:red">
+                    Este campo é obrigario.
+                  </div>
+                </div>
+
+                <div class="form-group" >
+                    <label for="dataAbertura">Data Abertura</label>
+                    <input type="text" 
+                    pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})"
+                    class="form-control" formControlName="dataAbertura"  placeholder="data da abertura">
+                    <div *ngIf="registerForm.get('dataAbertura')?.hasError('required')
+                    && registerForm.get('dataAbertura')?.touched" style="color:red">
+                        Este campo é obrigario.
+                      </div>
+                    </div>
+
+                    <div class="form-group" >
+                        <label for="ativo">Ativo
+                        <input type="checkbox" class="form-control" formControlName="ativo" >
+                    </label>
+                    </div>
+
+    <button class="btn btn-primary" (click)="salvar()" [disabled]="!registerForm.valid">Salvar</button>&nbsp;
+    <a class="btn btn-primary" routerLink="/">Voltar</a>
+</form>
