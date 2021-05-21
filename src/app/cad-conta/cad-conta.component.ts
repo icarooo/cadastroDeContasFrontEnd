@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Conta } from '../conta';
+import { Conta } from '../models/conta';
 import { ContaService } from '../conta.service';
 import { DatePipe } from '@angular/common';
-import { Bancos } from '../banco';
+import { Bancos } from '../models/banco';
 
 @Component({
   selector: 'app-cad-conta',
